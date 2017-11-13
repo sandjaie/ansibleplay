@@ -1,0 +1,15 @@
+---
+- hosts: webservers
+  user: ansible
+  become: true
+  gather_facts: yes
+
+  vars:
+    http_port: 80
+
+  tasks:
+   - name: Copy hosts file to target server
+     copy: src=hosts dest=/etc/hosts
+
+  roles:
+    - { role: nginx, tags: run_nginx }
