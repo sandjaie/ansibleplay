@@ -11,6 +11,7 @@ sudo apt-get install ansible
 
 ### Create Ansible user
 Create Ansible user on the host and target
+
 on the host:
 ```
 sudo adduser ansible
