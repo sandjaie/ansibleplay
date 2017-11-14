@@ -1,4 +1,4 @@
-# task2
+# Task2
 
 This ansible play is written for nginx installation on centos and ubuntu.
 ### Prerequisites 
