@@ -37,3 +37,26 @@ pull this repo ```git clone https://github.com/sandjaie/task2.git``` and move to
 ```
 ansible-playbook -i inventory/domain.local playbooks/install_nginx.yml
 ```
+
+Directory Structure:
+```
+├── inventory
+│   └── domain.local
+├── playbooks
+│   ├── files
+│   │   └── hosts
+│   ├── install_nginx.yml
+│   └── roles
+│       └── nginx
+│           ├── files
+│           │   ├── 1.html
+│           │   ├── 2.html
+│           │   ├── 3.html
+│           │   ├── myfirstpage.com.conf
+│           │   ├── mysecondpage.com.conf
+│           │   ├── mythirdpage.com.conf
+│           │   └── nginx.conf
+│           └── tasks
+│               └── main.yml
+└── README.md
+```
