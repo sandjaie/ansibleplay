@@ -1,4 +1,4 @@
-# Task2
+# ansible play
 
 This ansible play is written for nginx installation on centos and ubuntu.
 ### Prerequisites 
@@ -34,7 +34,7 @@ ssh-copy-id ansible@nginx01.domain.local
 where nginx01.domain.local is the target machine running CentOS 7
 
 ### How to run
-pull this repo ```git clone https://github.com/sandjaie/task2.git``` and move to task2 folder and run
+pull this repo ```git clone https://github.com/sandjaie/ansibleplay.git``` and move to task2 folder and run
 ```
 ansible-playbook -i inventory/domain.local playbooks/install_nginx.yml
 ```
