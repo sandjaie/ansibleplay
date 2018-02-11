@@ -1,0 +1,17 @@
+---
+- name: Set the default timezone to UTC
+  command: timedatectl set-timezone UTC
+  become: yes
+
+- name: Install ntp
+  yum: name=ntp state=present
+  become: yes
+
+#- name: Configure ntp file
+#  template: src=ntp.conf.j2 dest=/etc/ntp.conf
+#  tags: ntp
+#  notify: restart ntp
+
+- name: Start the ntp service
+  service: name=ntpd state=started enabled=yes
+  become: yes

@@ -1,0 +1,9 @@
+---
+- name: create a sprak ready dev machine
+  hosts: spark-dev
+  remote_user: ansible
+  roles:
+    #- common
+    #- java_installation
+    #- scala_installation
+    - spark_installation

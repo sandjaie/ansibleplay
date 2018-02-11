@@ -1,0 +1,19 @@
+---
+
+- name: Check if scala rpm found in the local machine
+  stat:
+    path: /tmp/scala-2.12.0.rpm
+  register: pkg_check 
+
+- name: Dowloading scala v2.12.0 rpm
+  get_url:
+    url: https://downloads.lightbend.com/scala/2.12.0/scala-2.12.0.rpm
+    dest: /tmp/scala-2.12.0.rpm
+    mode: 0777
+  when: pkg_check.stat.exists == False
+
+- name: Installing scala v2.12.0
+  yum:
+    name: /tmp/scala-2.12.0.rpm
+    state: present
+  become: yes
