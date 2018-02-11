@@ -1,6 +1,6 @@
 ---
 
-- name: Check if spark.tgz found in the local machine
+- name: Check if spark.tgz is found on the target machine
   stat:
     path: /tmp/spark-2.2.0-bin-hadoop2.7.tgz
   register: spark_pkg_check
