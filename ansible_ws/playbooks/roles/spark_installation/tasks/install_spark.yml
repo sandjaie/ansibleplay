@@ -1,0 +1,39 @@
+---
+
+- name: Check if spark.tgz found in the local machine
+  stat:
+    path: /tmp/spark-2.2.0-bin-hadoop2.7.tgz
+  register: spark_pkg_check
+
+- name: Downloading Spark v2.2.0
+  get_url:
+    url: http://www-us.apache.org/dist/spark/spark-2.2.0/spark-2.2.0-bin-hadoop2.7.tgz
+    dest: /tmp/spark-2.2.0-bin-hadoop2.7.tgz
+    mode: 0777
+  when: spark_pkg_check.stat.exists == False
+
+- name: Untar the pkg
+  unarchive:
+    src: /tmp/spark-2.2.0-bin-hadoop2.7.tgz
+    dest: /tmp
+    remote_src: yes
+
+- name: Create /usr/local/spark
+  file:
+    path: /usr/local/spark
+    state: directory
+    mode: 0755
+  become: yes
+
+- name: Copy spark files to /usr/local/spark
+  shell: cp -r /tmp/spark-2.2.0-bin-hadoop2.7/* /usr/local/spark
+  become: yes
+
+- name: Add SPARK_EXAMPLES to ENV
+  shell: echo 'export SPARK_EXAMPLES_JAR=/usr/local/spark/examples/jars/spark-examples_2.11-2.2.0.jar' | sudo tee -a /etc/profile
+
+- name: Add /usr/local/spark/bin to PATH
+  shell: echo 'export PATH=$PATH:/usr/local/spark/bin' | sudo tee -a /etc/profile
+
+- name:  Making /etc/profile active
+  shell: source /etc/profile
